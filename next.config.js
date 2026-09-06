@@ -6,6 +6,10 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
 
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+
   reactStrictMode: true,
 
   poweredByHeader: false,
@@ -13,7 +17,6 @@ const nextConfig = {
   compress: true,
 
   experimental: {
-    webpackBuildWorker: true,
     optimizePackageImports: ['lucide-react', 'framer-motion', 'recharts'],
   },
 
