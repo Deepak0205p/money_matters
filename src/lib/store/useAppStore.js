@@ -94,7 +94,12 @@ const initialState = {
 
 export const useAppStore = create()(persist((set, get) => ({
   ...initialState,
-  setUser: user => set({ user }),
+  setUser: user => {
+    set({ user, isAuthenticated: !!user });
+    if (user?.uid) {
+      get().loadFromCloud();
+    }
+  },
   loginUser: (user) => set({ user, isAuthenticated: true }),
   loginAsGuest: () => {
     const guestUser = {

@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
@@ -10,19 +10,19 @@ export async function GET() {
 
   if (backendUrl) {
     try {
-      const res = await fetch(${backendUrl}/api/health, { cache: "no-store" });
-      results.backend = res.ok ? "pinged_successfully" : ailed_with_status_${res.status};
+      const res = await fetch(`${backendUrl}/api/health`, { cache: "no-store" });
+      results.backend = res.ok ? "pinged_successfully" : `failed_with_status_${res.status}`;
     } catch (err) {
-      results.backend = error: ${err.message};
+      results.backend = `error: ${err.message}`;
     }
   }
 
   if (frontendUrl) {
     try {
       const res = await fetch(frontendUrl, { cache: "no-store" });
-      results.frontend = res.ok ? "pinged_successfully" : ailed_with_status_${res.status};
+      results.frontend = res.ok ? "pinged_successfully" : `failed_with_status_${res.status}`;
     } catch (err) {
-      results.frontend = error: ${err.message};
+      results.frontend = `error: ${err.message}`;
     }
   }
 

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect } from "react";
 import { getApiUrl } from "@/lib/apiClient";
@@ -8,7 +8,7 @@ export default function BackendKeepAlive() {
     const pingBackend = async () => {
       try {
         const timestamp = Date.now();
-        await fetch(getApiUrl(/api/health?t=), {
+        await fetch(getApiUrl(`/api/health?t=${timestamp}`), {
           method: "GET",
           cache: "no-store",
           headers: {
