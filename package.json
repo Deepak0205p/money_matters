@@ -4,8 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3000 --webpack",
-    "build": "NODE_OPTIONS='--max-old-space-size=440' next build --webpack",
+    "dev": "next dev -p 3000",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint ."
   },
