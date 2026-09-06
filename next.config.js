@@ -49,10 +49,14 @@ const nextConfig = {
 
   turbopack: {},
 
-  webpack: (config, { dir }) => {
+  webpack: (config, { isServer }) => {
     config.watchOptions = {
       ignored: ['**/node_modules', '**/.git', '**/build', '**/dist', '**/.next'],
     };
+    // Optimize memory during production build
+    if (!isServer) {
+      config.cache = false;
+    }
     return config;
   },
 };
