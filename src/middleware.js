@@ -51,6 +51,10 @@ export function middleware(request) {
       );
     }
 
+    if (pathname === '/api/health' || pathname.startsWith('/api/cron')) {
+      return NextResponse.next();
+    }
+
     if (request.method === 'POST') {
       const origin = request.headers.get('origin');
       const host = request.headers.get('host');
