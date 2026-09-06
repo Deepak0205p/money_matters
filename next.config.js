@@ -6,9 +6,11 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
 
+  productionBrowserSourceMaps: false,
+
   staticPageGenerationTimeout: 120,
 
-  reactStrictMode: true,
+  reactStrictMode: false,
 
   poweredByHeader: false,
 
@@ -16,7 +18,7 @@ const nextConfig = {
 
   experimental: {
     cpus: 1,
-    optimizePackageImports: ['lucide-react', 'framer-motion', 'recharts'],
+    optimizePackageImports: ['lucide-react', 'framer-motion', 'recharts', 'date-fns'],
   },
 
   images: {
