@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000 --webpack",
-    "build": "NODE_OPTIONS='--max-old-space-size=440 --optimize_for_size' next build --webpack",
+    "build": "NODE_OPTIONS='--max-old-space-size=440' next build --webpack",
     "start": "next start",
     "lint": "eslint ."
   },
