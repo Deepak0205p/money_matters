@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect } from "react";
 import { getApiUrl } from "@/lib/apiClient";
@@ -7,17 +7,25 @@ export default function BackendKeepAlive() {
   useEffect(() => {
     const pingBackend = async () => {
       try {
-        await fetch(getApiUrl("/api/health"), { cache: "no-store" });
+        const timestamp = Date.now();
+        await fetch(getApiUrl(/api/health?t=), {
+          method: "GET",
+          cache: "no-store",
+          headers: {
+            "x-keepalive-ping": "true",
+          },
+        });
       } catch (err) {
-        console.debug("Keep-alive ping error:", err);
+        console.debug("[KeepAlive] Background ping error:", err);
       }
     };
 
-    // Ping once immediately on load
+    // 1. Initial ping on load
     pingBackend();
 
-    // Ping every 4.5 minutes (270,000 ms) so Render free tier never idles/shuts down
-    const interval = setInterval(pingBackend, 270000);
+    // 2. Continuous ping exactly every 4 minutes (240,000 ms)
+    const FOUR_MINUTES = 4 * 60 * 1000;
+    const interval = setInterval(pingBackend, FOUR_MINUTES);
 
     return () => clearInterval(interval);
   }, []);
