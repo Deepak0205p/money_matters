@@ -6,9 +6,7 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
 
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  staticPageGenerationTimeout: 120,
 
   reactStrictMode: true,
 
@@ -17,6 +15,7 @@ const nextConfig = {
   compress: true,
 
   experimental: {
+    cpus: 1,
     optimizePackageImports: ['lucide-react', 'framer-motion', 'recharts'],
   },
 
